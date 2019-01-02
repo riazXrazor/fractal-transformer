@@ -1,0 +1,33 @@
+{
+  "name": "fractal-transformer",
+  "version": "1.0.0",
+  "description": "Transform data for presentation and transformation layer for complex data output, the like found in RESTful APIs, and works really well with JSON. Its like a view layer for your JSON/YAML/etc.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riazXrazor/fractal-transformer.git"
+  },
+  "keywords": [
+    "transform",
+    "data",
+    "json",
+    "object"
+  ],
+  "author": "Riaz Laskar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/riazXrazor/fractal-transformer/issues"
+  },
+  "homepage": "https://github.com/riazXrazor/fractal-transformer#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
+}
