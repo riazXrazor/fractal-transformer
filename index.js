@@ -17,7 +17,7 @@ function fractal(data, transformer) {
     }
 
     if (fs.existsSync(path.join(config.transformerDir, transformer + '.js'))) {
-        response = fractal(adata.value(), require(path.resolve(config.transformerDir, transformer)))
+        response = fractal(adata.value(), require(path.resolve(config.transformerDir, transformer + '.js')))
     } else if (_.isFunction(transformer)) {
         return transformer(adata);
     } else if (_.isObject(transformer)) {
