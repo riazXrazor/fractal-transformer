@@ -2,7 +2,6 @@ const _ = require('lodash');
 const path = require('path');
 const fs = require('fs');
 const config = {
-    baseDir: __dirname,
     transformerDir: 'transformers',
 };
 
@@ -17,8 +16,8 @@ function fractal(data, transformer) {
         throw ("Invalid Transformer");
     }
 
-    if (fs.existsSync(path.join(config.baseDir, config.transformerDir, transformer + '.js'))) {
-        response = fractal(adata.value(), require(path.join(config.baseDir, config.transformerDir, transformer)))
+    if (fs.existsSync(path.join(config.transformerDir, transformer + '.js'))) {
+        response = fractal(adata.value(), require(path.resolve(config.transformerDir, transformer)))
     } else if (_.isFunction(transformer)) {
         return transformer(adata);
     } else if (_.isObject(transformer)) {

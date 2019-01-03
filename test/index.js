@@ -1,5 +1,7 @@
 var should = require('chai').should();
-var fractal = require('../index')();
+var fractal = require('../index')({
+    transformerDir: 'test/transformers',
+});
 
 describe('fractal-transformer', function () {
 
@@ -20,9 +22,8 @@ describe('fractal-transformer', function () {
             "lastName": "Doe",
             "password": "$2a$10$VzJQsmaknGuafqXSfzDWg.zPshX..uY26Yn8X9TJnvjGqHex1FQ7S",
         };
-        var dataTransformed1 = fractal(dataDatabase1, userTransformer);
+        var dataTransformed1 = fractal(dataDatabase1, 't');
 
-        console.log(dataDatabase1)
         it("should return data with property 'id'", function () {
             dataTransformed1.should.have.property('id');
         });
