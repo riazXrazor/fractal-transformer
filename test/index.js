@@ -1,5 +1,5 @@
 var should = require('chai').should();
-var fractal = require('../index');
+var fractal = require('../index')();
 
 describe('fractal-transformer', function () {
 
