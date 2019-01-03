@@ -1,6 +1,6 @@
 {
   "name": "fractal-transformer",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Transform data for presentation and transformation layer for complex data output, the like found in RESTful APIs, and works really well with JSON. Its like a view layer for your JSON/YAML/etc.",
   "main": "index.js",
   "scripts": {
