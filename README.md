@@ -25,7 +25,7 @@ var dataDatabase = {
     "password": "$2a$10$VzJQsmaknGuafqXSfzDWg.zPshX..uY26Yn8X9TJnvjGqHex1FQ7S",
 };
 
-//transformer and define output properties
+//transform data
 var dataTransformed = fractal(dataDatabase,{
     "id": "_id",
     "name": function (data) {
@@ -33,7 +33,6 @@ var dataTransformed = fractal(dataDatabase,{
     }
 });
 
-//transform data
 console.log(dataTransformed);
 ```
 
@@ -64,7 +63,7 @@ var dataDatabase = {
     }
 };
 
-//create transformer and define output properties
+//transform data
 var dataTransformed = fractal(dataDatabase, {
     "id": "_id",
     "name": function (data) {
@@ -76,7 +75,7 @@ var dataTransformed = fractal(dataDatabase, {
     }
 });
 
-//transform data
+
 console.log(dataTransformed);
 ```
 
@@ -120,7 +119,7 @@ var dataDatabase = {
     ]
 };
 
-//create transformer and define output properties
+//transform data
 var dataTransformed = fractal(dataDatabase, {
     "id": "_id",
     "name": function (data) {
@@ -135,7 +134,6 @@ var dataTransformed = fractal(dataDatabase, {
     })
 });
 
-//transform data
 console.log(dataTransformed);
 ```
 
@@ -180,7 +178,7 @@ var dataDatabase = [{
     }
 ];
 
-//create transformer and define output properties
+//transform data
 var dataTransformed = fractal(dataDatabase, {
     "id": "_id",
     "name": function (data) {
@@ -188,7 +186,59 @@ var dataTransformed = fractal(dataDatabase, {
     }
 });
 
+
+console.log(dataTransformed);
+```
+
+The expected output
+```javascript
+[  
+   {  
+      "id":"5a91c4547886436ed94e6326",
+      "name":"John Doe"
+   },
+   {  
+      "id":"5a931bd3bac34d6aa90804dc",
+      "name":"Homero Simpson"
+   }
+]
+```
+
+### Usage with config 
+
+create a transformers folder and create a file `dataDatabase.js` in it.
+```javascript
+module.exports = {
+    "id": "_id",
+    "name": function (data) {
+        return data.get('firstName') + " " + data.get('lastName');
+    }
+}
+```
+
+```javascript
+//import library
+var fractal = require('fractal-transformer')();
+
+//get data from database or ...
+var dataDatabase = [{
+        "_id": "5a91c4547886436ed94e6326",
+        "firstName": "John",
+        "lastName": "Doe",
+        "password": "$2a$10$VzJQsmaknGuafqXSfzDWg.zPshX..uY26Yn8X9TJnvjGqHex1FQ7S",
+    },
+    {
+        "_id": "5a931bd3bac34d6aa90804dc",
+        "firstName": "Homero",
+        "lastName": "Simpson",
+        "password": "$2a$10$B19Xg/peAH.BK4Z1gV/xJ.2OXvm9kO95W89SYzAxYP7GS26i9mOvy",
+    }
+];
+
 //transform data
+var dataTransformed = fractal(dataDatabase,'dataDatabase');
+
+
 console.log(dataTransformed);
 ```
 
@@ -207,6 +257,15 @@ The expected output
 ```
 
 
+By default it searches for `dataDatabase.js` in `transformers` folder in the root
+of the project.
+You can overwrite its location by `transformerDir: 'path/to/dir'`
+
+```javascript
+    var fractal = require('fractal-transformer')({
+        transformerDir: 'api/transformers'
+    });
+```
 ## License
 
 MIT © [Riaz Laskar](https://github.com/riazXrazor/fractal-transformer/blob/master/LICENSE)
